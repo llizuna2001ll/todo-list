@@ -1,5 +1,6 @@
 package com.izuna.todolist.web;
 
+import com.izuna.todolist.entities.Todo;
 import com.izuna.todolist.entities.User;
 import com.izuna.todolist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,8 @@ public class UserRestController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable Long userId) {
-        Optional<User> user = userService.getUserById(userId);
-        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        User user = userService.getUserById(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping

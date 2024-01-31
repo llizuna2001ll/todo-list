@@ -1,5 +1,6 @@
 package com.izuna.todolist.services;
 
+import com.izuna.todolist.entities.Todo;
 import com.izuna.todolist.entities.User;
 import com.izuna.todolist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long userId) {
-        return userRepository.findById(userId);
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User Not Found"));
     }
 
     public User createUser(User user) {
