@@ -23,8 +23,8 @@ public class TodoService {
         this.userRepository = userRepository;
     }
 
-    public List<Todo> getAllTodos() {
-        return todoRepository.findAll();
+    public List<Todo> getAllTodosByUserId(Long userId) {
+        return todoRepository.findAllByUserId(userId);
     }
 
     public Optional<Todo> getTodoById(Long todoId) {
