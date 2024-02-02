@@ -1,5 +1,6 @@
 package com.izuna.todolist.services;
 
+import com.izuna.todolist.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -42,6 +43,9 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ) {
+        User user = (User) userDetails;
+        extraClaims.put("userId", user.getId());
+        extraClaims.put("authorities", userDetails.getAuthorities());
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
     private String buildToken(
@@ -49,6 +53,7 @@ public class JwtService {
             UserDetails userDetails,
             long expiration
     ) {
+
         return Jwts
                 .builder()
                 .setClaims(extraClaims)

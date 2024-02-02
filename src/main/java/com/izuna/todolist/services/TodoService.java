@@ -49,6 +49,7 @@ public class TodoService {
             if (optionalTodo.isPresent()) {
                 Todo existingTodo = optionalTodo.get();
                 existingTodo.setContent(todo.getContent());
+                existingTodo.setCategory(todo.getCategory());
                 existingTodo.setDate(todo.getDate());
                 existingTodo.setProgress(todo.getProgress());
                 existingTodo.setUser(user);
