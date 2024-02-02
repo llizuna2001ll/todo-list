@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/todos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TodoRestController {
 
     private final TodoService todoService;
@@ -21,8 +22,8 @@ public class TodoRestController {
         this.todoService = todoService;
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Todo>> getAllTodos(@PathVariable Long userId) {
+    @GetMapping("/user/")
+    public ResponseEntity<List<Todo>> getAllTodos(@RequestParam Long userId) {
         List<Todo> todos = todoService.getAllTodosByUserId(userId);
         return new ResponseEntity<>(todos, HttpStatus.OK);
     }
