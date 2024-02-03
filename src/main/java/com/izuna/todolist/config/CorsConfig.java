@@ -10,7 +10,7 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://todo-list-k5j8.onrender.com","192.168.11.102")
+                .allowedOrigins("192.168.11.102:3000")
                 .allowedMethods("GET","POST","PATCH","DELETE","PUT")
                 .allowedHeaders("*");
     }
